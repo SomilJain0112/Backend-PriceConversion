@@ -1,4 +1,3 @@
-// File name : /routes/priceRoutes.js
 import express from 'express';
 import { getPrice } from '../controllers/priceConverterController.js';
 
