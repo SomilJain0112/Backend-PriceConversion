@@ -1,10 +1,10 @@
 import axios from 'axios';
 import Cryptocurrency from '../models/Cryptocurrency.js';
 
-
 export const updateCryptocurrencies = async () => {
   try {
-    // Delete previous list of cryptocurrencies
+
+    // Delete previous list of cryptocurrencies from database
     await Cryptocurrency.deleteMany({});
     
     // Fetch cryptocurrency data from Coingecko API
@@ -16,8 +16,9 @@ export const updateCryptocurrencies = async () => {
       name: crypto.name
     }));
     await Cryptocurrency.insertMany(formattedCryptocurrencies);
-
+    res.status(201);
   } catch (error) {
     console.error('Error updating cryptocurrencies:', error);
+    res.status(500);
   }
 };

@@ -3,9 +3,9 @@ import { updateCryptocurrencies } from './controllers/cryptoListController.js';
 import cron from 'node-cron';
 import connectDB from './db.js';
 import dotenv from 'dotenv';
-import priceRoutes from './routes/priceRoutes.js';
+import priceRoutes from './routes/priceConverterRoute.js';
 import bodyParser from 'body-parser';
-import companyRoutes from './routes/companiesRoute.js'
+import companyRoutes from './routes/companyListRoute.js'
 
 
 dotenv.config();
@@ -17,8 +17,6 @@ connectDB();
 
 //Schedule cron job to update cryptocurrencies every hour
 cron.schedule('0 * * * *', updateCryptocurrencies);
-
-//cron.schedule('* * * * *', updateCryptocurrencies);
 
 
 app.use(bodyParser.json());

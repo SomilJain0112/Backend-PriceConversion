@@ -1,10 +1,8 @@
-import axios from "axios";
-import dotenv from 'dotenv';
-dotenv.config();
+import { companyListFetcher } from "../services/companyListService.js";
 
 export const getCompanyList = async (req, res) => {
   try {
-    const apiKey = process.env.API_KEY
+    
     const { currency } = req.body;
 
     if (currency !== "bitcoin" && currency !== "ethereum") {
@@ -12,20 +10,9 @@ export const getCompanyList = async (req, res) => {
         error: "Invalid currency. Only bitcoin or ethereum are supported.",
       });
     }
+    const companyNames= await companyListFetcher(currency);
 
-    const response = await axios.get(
-      `https://api.coingecko.com/api/v3/companies/public_treasury/${currency}`,
-      {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-        },
-      }
-    );
-
-    const companyList = response.data.companies;
-    const companyNames = companyList.map((company) => company.name);
-
-    res.json(companyNames);
+    res.status(200).json(companyNames);
   } catch (error) {
 
     console.error("Error:", error.message);
