@@ -60,14 +60,15 @@ This endpoint allows users to convert the price of a cryptocurrency from one cur
     "date": "12-01-2024"
 }
 
-```` json Response
+#### Response
+
 {
     "price": 176558.73727068843
 }
 
 
 
-### Task3: `POST /api/list`
+### Task3: `POST /list/companies`
 
 This endpoint allows users to get list of companies that hold the specifiedcurrency 
 
