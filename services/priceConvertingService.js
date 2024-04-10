@@ -6,6 +6,7 @@ dotenv.config();
 // price of fromcurrency in USD with price of toCurrency in USD we get price of fromcurrency in terms of toCurrency.
 const converterFunction = async (fromCurrency, toCurrency, date) => {
   try {
+   
     const apiKey = process.env.API_KEY
     const response1 = await axios.get(
       `https://api.coingecko.com/api/v3/coins/${fromCurrency}/history?date=${date}&localization=false`,
@@ -26,7 +27,10 @@ const converterFunction = async (fromCurrency, toCurrency, date) => {
       }
     );
 
+
+
     const secondCurrInUsd= response2.data.market_data.current_price.usd;
+    console.log(firstCurrInUsd,secondCurrInUsd)
     const convertedValue= firstCurrInUsd/secondCurrInUsd
     return convertedValue;
     

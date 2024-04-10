@@ -53,6 +53,7 @@ This endpoint allows users to convert the price of a cryptocurrency from one cur
 
 #### Request Body
 
+Note : Access to historical data via the Public API is restricted to the past 365 days only(mentioned in coingecko documentation).
 ```json
 {
     "fromcurrency": "bitcoin",
